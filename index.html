@@ -46,10 +46,10 @@
   Лучше DNS TXT. Токены после подтверждения не удалять.
 -->
 <!--
-  JSON-LD: всё указанное должно быть видно и на странице (footer#company). Позже добавьте в Organization по выписке:
-  "iso6523Code": "0200:<код компании>" (ICD 0200 = код юрлица Литвы), "taxID": "<код>", "vatID": "LT…" (только
-  плательщику НДС), "duns", "telephone", полный "address" ("postalCode": "LT-xxxxx"), "logo" (настоящий файл
-  от 112×112), "sameAs" (только реальные профили), "foundingDate". В JSON обычный UTF-8, без HTML-сущностей.
+  JSON-LD: всё указанное должно быть видно и на странице (footer#company). Код компании (iso6523Code: ICD 0200 = код
+  юрлица Литвы; taxID) и адрес заполнены. Позже можно добавить: "vatID": "LT…" (только плательщику НДС), "duns",
+  "telephone", "logo" (настоящий файл от 112×112), "sameAs" (только реальные профили), "foundingDate".
+  В JSON обычный UTF-8, без HTML-сущностей.
 -->
 <script type="application/ld+json">
 {
@@ -64,7 +64,15 @@
       "url": "https://woofwoof.tech/",
       "email": "hello@woofwoof.tech",
       "description": "Independent software company registered in Lithuania that builds mobile applications and software products for consumers and businesses.",
-      "address": { "@type": "PostalAddress", "addressCountry": "LT" }
+      "iso6523Code": "0200:308157323",
+      "taxID": "308157323",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Perkūnkiemio g. 19",
+        "postalCode": "LT-12120",
+        "addressLocality": "Vilnius",
+        "addressCountry": "LT"
+      }
     },
     {
       "@type": "WebSite",
@@ -275,6 +283,7 @@ time { white-space: nowrap; }
 .company dl > div + div { border-top: 1px solid var(--rule); }
 .company dt { padding-top: .2rem; }
 .company dd { overflow-wrap: anywhere; }
+.company .dd-note { display: block; margin-top: .125rem; font-size: .9375rem; color: var(--ink-2); }
 @media (min-width: 36rem) { .company dl > div { grid-template-columns: 11rem minmax(0, 1fr); align-items: baseline; } .company dt { padding-top: 0; } }
 .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: clamp(2rem, 4vw, 2.5rem); padding-top: 1.25rem; border-top: 1px solid var(--rule); font-size: .875rem; color: var(--ink-3); }
 
@@ -510,8 +519,7 @@ time { white-space: nowrap; }
             <div class="policy">
               <div class="clause">
                 <h3>Who we are</h3>
-                <p>This website is operated by WoofWoof Tech MB, a company from Lithuania. WoofWoof Tech MB is the controller responsible for the personal data described in this policy. Contact: <!--email_off--><a href="mailto:privacy@woofwoof.tech">privacy@woofwoof.tech</a><!--/email_off-->.</p>
-                <!-- когда будут данные: добавьте код компании и адрес регистрации (buveinės adresas) в этот абзац -->
+                <p>This website is operated by WoofWoof Tech MB, a company from Lithuania (company code 308157323, registered office Perkūnkiemio g. 19, LT-12120 Vilnius). WoofWoof Tech MB is the controller responsible for the personal data described in this policy. Contact: <!--email_off--><a href="mailto:privacy@woofwoof.tech">privacy@woofwoof.tech</a><!--/email_off-->.</p>
               </div>
               <div class="clause">
                 <h3>What this website doesn't do</h3>
@@ -576,19 +584,15 @@ time { white-space: nowrap; }
       <div class="sec-body">
         <address class="company panel">
           <dl>
-            <div><dt>Legal name</dt><dd>WoofWoof Tech MB</dd></div>
-            <div><dt>Country</dt><dd>Lithuania</dd></div>
+            <div><dt>Legal name</dt><dd>WoofWoof Tech MB <span class="dd-note">Company code 308157323</span></dd></div>
+            <div><dt>Registered office</dt><dd>Perkūnkiemio g. 19, LT-12120 Vilnius, Lithuania</dd></div>
             <div><dt>Email</dt><dd><!--email_off--><a href="mailto:hello@woofwoof.tech">hello@woofwoof.tech</a><!--/email_off--></dd></div>
             <div><dt>Website</dt><dd><a href="https://woofwoof.tech/">woofwoof.tech</a></dd></div>
 <!--
-  ▼▼▼ РЕКВИЗИТЫ КОМПАНИИ: когда будут данные, вынесите нужные строки сюда (перед </dl>) ▼▼▼
-  Значения точно как в выписке из Регистра юрлиц и одинаковые с D&B, Apple и Google. Требуют IVPĮ ст. 6 и Директива
-  2000/31/EC ст. 5. Никаких заглушек и «N/A». VAT — только для плательщика НДС; телефон рекомендуется.
-  Затем — в абзац «Who we are» политики и в JSON-LD.
+  ▼▼▼ ЕЩЁ РЕКВИЗИТЫ: когда понадобятся, вынесите нужные строки сюда (перед </dl>) ▼▼▼
+  Значения точно как в выписке из Регистра юрлиц и одинаковые с D&B, Apple и Google. Никаких заглушек и «N/A».
+  VAT — только для плательщика НДС; телефон рекомендуется как второй канал связи. Затем — в JSON-LD.
 
-            <div><dt>Registered office</dt><dd>[street, number], LT-[postcode] [city], Lithuania</dd></div>
-            <div><dt>Company code</dt><dd>[9 digits]</dd></div>
-            <div><dt>Register</dt><dd>Register of Legal Entities of the Republic of Lithuania (<span lang="lt">Juridinių asmenų registras</span>), State Enterprise Centre of Registers</dd></div>
             <div><dt>VAT number</dt><dd>LT[digits]</dd></div>
             <div><dt>Phone</dt><dd><a href="tel:+370XXXXXXXX">+370 [number]</a></dd></div>
 -->
