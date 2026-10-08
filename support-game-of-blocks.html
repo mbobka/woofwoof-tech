@@ -1,49 +1,203 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Game of Blocks — Поддержка / Support</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!--
+  ШАБЛОН ДОКУМЕНТА САЙТА (политика конфиденциальности приложения, страница поддержки) в дизайне лендинга «Signal».
+  Как заполнять — policy-kit/CONVENTIONS.md (хранится рядом с исходником лендинга, вне репозитория сайта): значения встают вместо плейсхолдеров в двойных фигурных скобках
+  (head, шапка документа, место содержимого). Остальное (head, CSS, шапка сайта, подвал) общее для всех документов — не править.
+  CSP как на лендинге: не грузится ничего, разрешены только встроенный <style> ('unsafe-inline' сознательно) и data:-фавиконка.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game of Blocks — Support · WoofWoof Tech MB</title>
+<meta name="description" content="Support for Game of Blocks by WoofWoof Tech MB: how to play, answers to common questions, and how to report a bug.">
+<link rel="canonical" href="https://woofwoof.tech/support-game-of-blocks">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F5F3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11100E" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cpath%20d='M32%201.5C6.3%201.5%201.5%206.3%201.5%2032s4.8%2030.5%2030.5%2030.5%2030.5-4.8%2030.5-30.5S57.7%201.5%2032%201.5z'%20fill='%2317150F'%20stroke='%238D8679'%20stroke-width='3'/%3E%3Cpath%20d='M7%2032H12.5q4-32%208%200q4%2026%208%200H35.5q4-26%208%200q4%2021%208%200H57'%20fill='none'%20stroke='%23FF5A1F'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+/* 1. Токены — копия лендинга (расчёт контрастов WCAG — в его <style>): светлая тема, тёмная по prefers-color-scheme */
+:root {
+  --bg: #F5F3EE; --surface: #FBFAF7; --ink: #17150F; --ink-2: #4C473F; --ink-3: #686258;
+  --rule: #E1DCD2; --accent-text: #B4380B; --focus: #B4380B; --tile: #17150F; --tile-wave: #FF5A1F;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --max: 72rem; --gutter: clamp(1rem, 4vw, 3rem); --header-h: 4rem; --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11100E; --surface: #191815; --ink: #EEEAE2; --ink-2: #BAB3A7; --ink-3: #9A9387;
+    --rule: #2C2925; --accent-text: #FF8D5C; --focus: #FF9A6B; --tile: #2A2622; --tile-wave: #FF7436;
+  }
+}
+
+/* 2. База */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--ink); }
+body { margin: 0; font: 400 1rem/1.6 var(--sans); }
+h1, h2, h3, h4 { margin: 0; font-weight: 700; text-wrap: balance; }
+p, ul, ol, dl, dd { margin: 0; }
+p { text-wrap: pretty; }
+a { color: inherit; text-decoration-thickness: 1px; text-decoration-color: var(--accent-text); text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+.label, .num, .company dt { font: 500 .75rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.panel { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+.nobr, time { white-space: nowrap; }
+
+/* 3. Skip-link (при фокусе — поверх шапки), шапка как на лендинге: знак и название, справа одна тихая ссылка на главную */
+.skip-link { position: absolute; z-index: 20; top: .75rem; left: max(var(--gutter), (100% - var(--max)) / 2); padding: .625rem 1rem; border-radius: 8px; background: var(--ink); color: var(--bg); font-weight: 600; text-align: center; text-decoration: none; min-width: 11rem; transform: translateY(-300%); }
+.skip-link:focus { transform: none; }
+.site-header { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 1rem; min-height: var(--header-h); padding-block: .25rem; }
+.brand { display: inline-flex; align-items: center; gap: .625rem; min-height: 44px; font-size: 1.0625rem; font-weight: 700; letter-spacing: -.015em; text-decoration: none; }
+.mark { flex: none; }
+.mark-tile { fill: var(--tile); }
+.mark-wave { fill: none; stroke: var(--tile-wave); stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; }
+.nav-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; color: var(--ink-2); text-decoration-color: transparent; }
+.nav-link:hover { color: var(--ink); text-decoration-color: var(--accent-text); }
+@media (min-width: 48rem) {
+  .site-header { position: sticky; top: 0; z-index: 10; }
+  .nav-link { font-size: .9375rem; }
+  /* цель skip-link и фокус не прячутся под липкой шапкой */
+  main { scroll-margin-top: var(--header-h); }
+  a { scroll-margin-block: calc(var(--header-h) + 1.5rem) 1.5rem; }
+}
+
+/* 4. Шапка документа: подпись (приложение), h1 (тип документа), дата */
+.doc-head { padding-block: clamp(2.25rem, 5.5vw, 4rem) clamp(1.75rem, 4vw, 2.5rem); }
+.doc-app { color: var(--accent-text); }
+.doc-head h1 { margin-top: 1rem; font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem); line-height: 1.02; letter-spacing: -.03em; }
+.doc-meta { margin-top: 1.25rem; }
+
+/* 5. Текст: одна колонка ~68ch; основной цвет ink-2 (как текст разделов лендинга), заголовки и выделения — ink. Размеры в em — печать масштабирует их от body */
+.doc-body { max-width: 68ch; font-size: 1.0625em; color: var(--ink-2); overflow-wrap: break-word; }
+.doc-body :is(h2, h3, h4, strong, a, dd) { color: var(--ink); }
+.doc-body strong { font-weight: 600; }
+.doc-body .num { color: var(--accent-text); }
+.lede { font-size: clamp(1.0625em, 1em + .3vw, 1.2em); line-height: 1.55; color: var(--ink); }
+.note { font-size: .9em; color: var(--ink-3); }
+/* ритм: элементы — прямые дети .doc-body; порядок правил важен (одинаковая специфичность) */
+.doc-body > * + * { margin-top: 1rem; }
+.doc-body > :is(h2, h3, h4) + * { margin-top: .625rem; }
+/* h2 — раздел: над каждым линейка, как у разделов лендинга (у заголовка без номера видна она сама).
+   Номер из текста заголовка (span.num) — как sec-rule лендинга: плашка цвета фона закрывает линейку h2 и рисует свою после номера.
+   Псевдоэлементы не абсолютные — иначе axe не может определить фон под номером */
+.doc-body > h2 { position: relative; margin-top: clamp(2rem, 4vw, 2.75rem); padding-top: 1.25rem; font-size: clamp(1.375rem, 1.2rem + .7vw, 1.75rem); line-height: 1.15; letter-spacing: -.02em; }
+.doc-body > h2::before, .doc-body > h2 > .num::after { content: ""; display: block; height: 1px; background: var(--rule); }
+.doc-body > h2::before { margin-bottom: 1.5rem; }
+.doc-body > h2 > .num { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 1rem; height: 2.5rem; background: var(--bg); }
+.doc-body > h2 > .num::after { flex: 1; }
+/* h3/h4 — подпункты: номер моноширинным перед названием, названия соседних подпунктов на одной вертикали */
+.doc-body > h3 { margin-top: 1.75rem; font-size: 1.1875rem; line-height: 1.3; letter-spacing: -.01em; }
+.doc-body > h4 { margin-top: 1.5rem; font-size: 1em; line-height: 1.4; }
+.doc-body > :is(h3, h4) > .num { display: inline-block; min-width: 2.75rem; }
+.doc-body > h2 + :is(h3, h4) { margin-top: 1.25rem; }
+.doc-body > :first-child { margin-top: 0; }
+/* списки: маркеры акцентом, вложенный список — внутри своего пункта */
+.doc-body :is(ul, ol) { padding-left: 1.375rem; }
+.doc-body li + li, .doc-body li > :is(ul, ol) { margin-top: .5rem; }
+.doc-body li::marker { color: var(--accent-text); }
+
+/* 6. Блок реквизитов (раздел контактов политики) — как «Company information» на лендинге */
+.doc-body > .company { margin-top: 1.25rem; }
+.company { font-style: normal; }
+.company dl > div { display: grid; gap: .125rem 1.5rem; padding: .875rem clamp(1rem, 3vw, 1.5rem); }
+.company dl > div + div { border-top: 1px solid var(--rule); }
+.company dt { padding-top: .2rem; }
+.company dd { overflow-wrap: anywhere; }
+@media (min-width: 36rem) { .company dl > div { grid-template-columns: 11rem minmax(0, 1fr); align-items: baseline; } .company dt { padding-top: 0; } }
+
+/* 7. Подвал: строка реквизитов как на лендинге, справа — ссылка на главную */
+.site-footer { padding-bottom: 2rem; }
+.legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: clamp(3.5rem, 7vw, 5rem); padding-top: 1.25rem; border-top: 1px solid var(--rule); font-size: .875rem; color: var(--ink-3); }
+
+/* 8. Движение: только при no-preference; знак «лает» при наведении, как на лендинге */
+@keyframes sig-draw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .brand:hover .mark-wave { stroke-dasharray: 1000; animation: sig-draw .5s cubic-bezier(.4, 0, .2, 1); }
+  .nav-link, .skip-link { transition: color .15s, text-decoration-color .15s, transform .15s; }
+}
+
+/* 9. Принудительные цвета (контрастные темы Windows) */
+@media (forced-colors: active) {
+  .mark-tile { fill: CanvasText; }
+  .mark-wave { stroke: Canvas; }
+  .skip-link { border: 1px solid ButtonText; background: ButtonFace; color: ButtonText; }
+  .doc-body > h2::before, .doc-body > h2 > .num::after { background: CanvasText; }
+}
+
+/* 10. Печать: светлая бумага, без навигации, на всю ширину листа; адреса внешних ссылок печатаются */
+@media print {
+  :root { color-scheme: light; --bg: #FFF; --surface: #FFF; --ink: #000; --ink-2: #222; --ink-3: #444; --rule: #BBB; --accent-text: #000; --tile: #000; --tile-wave: #FFF; }
+  body { font-size: 10.5pt; }
+  .skip-link, nav { display: none !important; }
+  .site-header { position: static !important; }
+  .doc-head { padding-block: 1.25rem 1rem; }
+  .doc-head h1 { font-size: 26pt; }
+  .doc-body { max-width: none; }
+  .doc-body > h2 { margin-top: 1.25rem; padding-top: 1rem; font-size: 15pt; }
+  .doc-body > h2::before { margin-bottom: 1.25rem; }
+  .doc-body > h2 > .num { height: 2rem; }
+  .doc-body > h3 { font-size: 12pt; }
+  .doc-body > :is(h2, h3, h4) { break-after: avoid; }
+  .company { break-inside: avoid; }
+  .legal { margin-top: 2rem; break-before: avoid; }
+  .doc-body a[href^="http"]::after { content: " [" attr(href) "]"; font-size: .85em; overflow-wrap: anywhere; }
+  .doc-body .company a::after { content: none; }
+}
+</style>
 </head>
 <body>
-<h1>🎮 Game of Blocks — Поддержка / Support</h1>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<h2>🇷🇺 Поддержка</h2>
-<p>Нашли ошибку или есть идея? Напишите на <a href="mailto:cashflowapp.help@gmail.com?subject=Game%20of%20Blocks">cashflowapp.help@gmail.com</a> — укажите модель устройства и версию iOS.</p>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="./">
+      <svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false"><path class="mark-tile" fill="#17150F" d="M32 0C5 0 0 5 0 32s5 32 32 32 32-5 32-32S59 0 32 0z"/><path class="mark-wave" fill="none" stroke="#FF5A1F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1000" d="M7 32H12.5q4-32 8 0q4 26 8 0H35.5q4-26 8 0q4 21 8 0H57"/></svg>
+      <span>WoofWoof Tech</span>
+    </a>
+    <nav>
+      <a class="nav-link" href="./">woofwoof.tech</a>
+    </nav>
+  </div>
+</header>
 
-<h3>Как играть</h3>
-<ul>
-  <li><strong>Движение</strong> — ← / → на крестовине (удержание повторяет движение) или горизонтальный свайп по полю.</li>
-  <li><strong>Поворот</strong> — ↻ вверху крестовины или касание поля.</li>
-  <li><strong>Мягкое падение</strong> — ↓ внизу крестовины или свайп вниз.</li>
-  <li><strong>Мгновенное падение</strong> — кнопка «СБРОСИТЬ».</li>
-  <li><strong>Пауза</strong> — Ⅱ в верхнем углу.</li>
-</ul>
+<main id="main" class="wrap">
+  <div class="doc-head">
+    <p class="label doc-app">Game of Blocks</p>
+    <h1>Support</h1>
+  </div>
+  <div class="doc-body">
+    <p class="lede">Found a bug or have a suggestion? Email <!--email_off--><a href="mailto:hello@woofwoof.tech?subject=Game%20of%20Blocks">hello@woofwoof.tech</a><!--/email_off--> with your device model and iOS version.</p>
 
-<h3>Частые вопросы</h3>
-<p><strong>Крестовина не под той рукой.</strong> Откройте боковую панель («?») и переключите «Рука: правая / левая». Выбор сохраняется.</p>
-<p><strong>Нет вибрации.</strong> Проверьте выключатель виброотклика в боковой панели и системные настройки «Звуки, тактильные сигналы».</p>
-<p><strong>Игра продолжилась не с того места.</strong> Партия автосохраняется каждые две секунды и при уходе в фон; после перезапуска она открывается на паузе.</p>
-<p>Игра работает полностью офлайн, без аккаунта и рекламы. <a href="privacy-policy-game-of-blocks.html">Политика конфиденциальности</a>.</p>
+    <h2>How to play</h2>
+    <ul>
+      <li><strong>Move</strong> — ← / → on the D-pad (hold to repeat) or swipe the board horizontally.</li>
+      <li><strong>Rotate</strong> — ↻ at the top of the D-pad, or tap the board.</li>
+      <li><strong>Soft drop</strong> — ↓ at the bottom of the D-pad, or swipe down.</li>
+      <li><strong>Hard drop</strong> — the DROP button.</li>
+      <li><strong>Pause</strong> — Ⅱ in the top corner.</li>
+    </ul>
 
-<hr>
-<h2>🇬🇧 Support</h2>
-<p>Found a bug or have a suggestion? Email <a href="mailto:cashflowapp.help@gmail.com?subject=Game%20of%20Blocks">cashflowapp.help@gmail.com</a> with your device model and iOS version.</p>
+    <h2>FAQ</h2>
+    <p><strong>The D-pad is on the wrong side.</strong> Open the side panel (“?”) and switch “Hand: right / left”. The choice is remembered.</p>
+    <p><strong>No haptics.</strong> Check the haptics toggle in the side panel and the system “Sounds &amp; Haptics” settings.</p>
+    <p><strong>The game resumed at the wrong point.</strong> Progress is auto-saved every two seconds and when the app goes to the background; it reopens paused.</p>
+    <p>The game is fully offline, with no account and no ads. <a href="privacy-policy-game-of-blocks.html">Privacy Policy</a>.</p>
+  </div>
+</main>
 
-<h3>How to play</h3>
-<ul>
-  <li><strong>Move</strong> — ← / → on the D-pad (hold to repeat) or swipe the board horizontally.</li>
-  <li><strong>Rotate</strong> — ↻ at the top of the D-pad, or tap the board.</li>
-  <li><strong>Soft drop</strong> — ↓ at the bottom of the D-pad, or swipe down.</li>
-  <li><strong>Hard drop</strong> — the DROP button.</li>
-  <li><strong>Pause</strong> — Ⅱ in the top corner.</li>
-</ul>
-
-<h3>FAQ</h3>
-<p><strong>The D-pad is on the wrong side.</strong> Open the side panel (“?”) and switch “Hand: right / left”. The choice is remembered.</p>
-<p><strong>No haptics.</strong> Check the haptics toggle in the side panel and the system “Sounds &amp; Haptics” settings.</p>
-<p><strong>The game resumed at the wrong point.</strong> Progress is auto-saved every two seconds and when the app goes to the background; it reopens paused.</p>
-<p>The game is fully offline, with no account and no ads. <a href="privacy-policy-game-of-blocks.html">Privacy Policy</a>.</p>
-
+<footer class="site-footer">
+  <div class="wrap legal">
+    <p>© 2026 WoofWoof Tech MB · <span class="nobr">Company code 308157323</span> · <span class="nobr">Perkūnkiemio g. 19</span>, <span class="nobr">LT-12120 Vilnius</span>, Lithuania</p>
+    <p><a href="./">woofwoof.tech</a></p>
+  </div>
+</footer>
 </body>
 </html>
