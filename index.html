@@ -47,7 +47,7 @@
 -->
 <!--
   JSON-LD: всё указанное должно быть видно и на странице (footer#company). Код компании (iso6523Code: ICD 0200 = код
-  юрлица Литвы; taxID) и адрес заполнены. Позже можно добавить: "vatID": "LT…" (только плательщику НДС), "duns",
+  юрлица Литвы; taxID), код плательщика НДС (vatID) и адрес заполнены. Позже можно добавить: "duns",
   "telephone", "logo" (настоящий файл от 112×112), "sameAs" (только реальные профили), "foundingDate".
   В JSON обычный UTF-8, без HTML-сущностей.
 -->
@@ -66,6 +66,7 @@
       "description": "Independent software company registered in Lithuania that builds mobile applications and software products for consumers and businesses.",
       "iso6523Code": "0200:308157323",
       "taxID": "308157323",
+      "vatID": "LT100020911510",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Perkūnkiemio g. 19",
@@ -586,14 +587,14 @@ time { white-space: nowrap; }
           <dl>
             <div><dt>Legal name</dt><dd>WoofWoof Tech MB <span class="dd-note">Company code 308157323</span></dd></div>
             <div><dt>Registered office</dt><dd>Perkūnkiemio g. 19, LT-12120 Vilnius, Lithuania</dd></div>
+            <div><dt>VAT number</dt><dd>LT100020911510</dd></div>
             <div><dt>Email</dt><dd><!--email_off--><a href="mailto:hello@woofwoof.tech">hello@woofwoof.tech</a><!--/email_off--></dd></div>
             <div><dt>Website</dt><dd><a href="https://woofwoof.tech/">woofwoof.tech</a></dd></div>
 <!--
   ▼▼▼ ЕЩЁ РЕКВИЗИТЫ: когда понадобятся, вынесите нужные строки сюда (перед </dl>) ▼▼▼
   Значения точно как в выписке из Регистра юрлиц и одинаковые с D&B, Apple и Google. Никаких заглушек и «N/A».
-  VAT — только для плательщика НДС; телефон рекомендуется как второй канал связи. Затем — в JSON-LD.
+  Телефон рекомендуется как второй канал связи. Затем — в JSON-LD ("telephone").
 
-            <div><dt>VAT number</dt><dd>LT[digits]</dd></div>
             <div><dt>Phone</dt><dd><a href="tel:+370XXXXXXXX">+370 [number]</a></dd></div>
 -->
           </dl>
