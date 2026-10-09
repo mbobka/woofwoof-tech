@@ -51,6 +51,7 @@ canvas { touch-action: none; }
   letter-spacing: 0.3px; line-height: 1.15; }
 .h2 { font-family: var(--font-head); font-size: 19px; text-align: center; color: var(--brass); margin-top: 2px; }
 .why, .sub { font-size: 14px; text-align: center; color: #cfc4ad; line-height: 1.35; }
+.why.ded { color: var(--xp); font-family: var(--font-head); font-size: 16px; overflow-wrap: anywhere; }
 
 /* ===== Кнопки ===== */
 .btn { min-height: 56px; border-radius: 12px; border: 1px solid var(--brass);
@@ -2621,7 +2622,8 @@ body.lefty #scr-prologue .pskip { right: auto; left: calc(var(--sal) + 10px); }
     end: 'Конец',
     line1: 'Fullmetal Alchemist: Равноценный обмен',
     line2: 'Неофициальная фанатская игра по манге Fullmetal Alchemist (автор — Hiromu Arakawa) и аниме Fullmetal Alchemist: Brotherhood.',
-    line3: 'Код, графика и звук написаны с нуля. Автор — mbobka.',
+    line3: 'Код, графика и звук написаны с нуля. Автор — mbobka.',
+    line4: 'Сделано специально для princessEdwardElric67.',
     back: 'На главный экран'
   };
 
@@ -38619,6 +38621,7 @@ body.lefty #scr-prologue .pskip { right: auto; left: calc(var(--sal) + 10px); }
     }
     el('div', 'why', box, T.credits.line2);
     el('div', 'why', box, T.credits.line3);
+    el('div', 'why ded', box, T.credits.line4);   // посвящение — просьба автора
     var row = el('div', 'btnrow', box);
     btn(row, T.story.next, 'primary', function () { var f = cred.onNext || credNext; cred.onNext = null; f(); });
     btn(row, T.credits.back, '', function () { var f = cred.onTitle || credTitle; cred.onTitle = null; f(); });
